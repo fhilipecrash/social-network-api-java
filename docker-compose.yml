@@ -1,0 +1,16 @@
+version: '3'
+services:
+  pgsql:
+    image: 'postgres:14'
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    environment:
+      PGPASSWORD: '${DB_PASSWORD:-secret}'
+      POSTGRES_DB: '${DB_DATABASE:-userpostsdb}'
+      POSTGRES_USER: '${DB_USERNAME:-postgres}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+    healthcheck:
+      test:
+        [ 'CMD', 'pg_isready', '-q', '-d', '${DB_DATABASE}', '-U', '${DB_USERNAME}']
+      retries: 3
+      timeout: 5s
