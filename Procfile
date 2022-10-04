@@ -1,1 +1,1 @@
-web: java -jar target/usersposts-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=80 -jar target/*.jar
