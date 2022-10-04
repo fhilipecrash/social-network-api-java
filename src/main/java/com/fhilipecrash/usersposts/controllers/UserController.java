@@ -24,16 +24,16 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping(value = "/{id}", params = "show_posts")
+    @GetMapping(value = "/{id}", params = "showPosts")
     @ResponseStatus(code = HttpStatus.OK)
-    public Map<String, Object> getUser(@PathVariable("id") int id, @RequestParam("show_posts") boolean show_posts) {
+    public Map<String, Object> getUser(@PathVariable("id") int id, @RequestParam("showPosts") boolean showPosts) {
         User user = userService.getUser(id);
         Map<String, Object> userMap = new LinkedHashMap<>();
         userMap.put("id", user.getId());
         userMap.put("name", user.getName());
         userMap.put("email", user.getEmail());
 
-        if (show_posts) {
+        if (showPosts) {
             List<Post> posts = user.getPosts();
             List<Map<String, Object>> postsMap = new ArrayList<>();
             posts.forEach(post -> {
