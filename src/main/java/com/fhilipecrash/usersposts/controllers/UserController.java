@@ -18,6 +18,11 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/get")
+    public String get() {
+        return "get";
+    }
+
     @GetMapping("/{id}")
     public User getUser(@PathVariable int id) {
         return userService.getUser(id);
