@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -22,8 +24,14 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public User getUser(@PathVariable int id) {
-        return userService.getUser(id);
+    public Map<String, Object> getUser(@PathVariable("id") int id) {
+        User user = userService.getUser(id);
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put("id", user.getId());
+        userMap.put("name", user.getName());
+        userMap.put("email", user.getEmail());
+
+        return userMap;
     }
 
     @PostMapping("/create")
