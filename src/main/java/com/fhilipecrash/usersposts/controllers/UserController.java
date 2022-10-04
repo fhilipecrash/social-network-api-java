@@ -24,26 +24,29 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", params = "show_posts")
     @ResponseStatus(code = HttpStatus.OK)
-    public Map<String, Object> getUser(@PathVariable("id") int id) {
+    public Map<String, Object> getUser(@PathVariable("id") int id, @RequestParam("show_posts") boolean show_posts) {
         User user = userService.getUser(id);
         Map<String, Object> userMap = new LinkedHashMap<>();
         userMap.put("id", user.getId());
         userMap.put("name", user.getName());
         userMap.put("email", user.getEmail());
 
-        List<Post> posts = user.getPosts();
-        List<Map<String, Object>> postsMap = new ArrayList<>();
-        posts.forEach(post -> {
-            Map<String, Object> postMap = new LinkedHashMap<>();
-            postMap.put("id", post.getId());
-            postMap.put("title", post.getTitle());
-            postMap.put("content", post.getContent());
+        if (show_posts) {
+            List<Post> posts = user.getPosts();
+            List<Map<String, Object>> postsMap = new ArrayList<>();
+            posts.forEach(post -> {
+                Map<String, Object> postMap = new LinkedHashMap<>();
+                postMap.put("id", post.getId());
+                postMap.put("title", post.getTitle());
+                postMap.put("content", post.getContent());
 
-            postsMap.add(postMap);
-        });
-        userMap.put("posts", postsMap);
+                postsMap.add(postMap);
+            });
+            userMap.put("posts", postsMap);
+        }
+
 
         return userMap;
     }
