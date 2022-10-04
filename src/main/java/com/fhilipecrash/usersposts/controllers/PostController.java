@@ -3,6 +3,7 @@ package com.fhilipecrash.usersposts.controllers;
 import com.fhilipecrash.usersposts.models.Post;
 import com.fhilipecrash.usersposts.services.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,36 +15,32 @@ public class PostController {
     private PostService postService;
 
     @GetMapping()
+    @ResponseStatus(code = HttpStatus.OK)
     public List<Post> getAllPosts() {
         return postService.getAllPosts();
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
     public Post getPost(@PathVariable int id) {
         return postService.getPost(id);
     }
 
     @PostMapping("/create")
-    public String save(@RequestBody Post post) {
+    @ResponseStatus(code = HttpStatus.CREATED, reason = "Post created")
+    public void save(@RequestBody Post post) {
         postService.save(post);
-        return "Post saved";
     }
 
     @PutMapping("/update/{id}")
-    public String update(@PathVariable int id, @RequestBody Post post) {
-        if (postService.update(id, post) != null) {
-            return "Post updated";
-        } else {
-            return "Post not found";
-        }
+    @ResponseStatus(code = HttpStatus.OK, reason = "Post updated")
+    public void update(@PathVariable int id, @RequestBody Post post) {
+        postService.update(id, post);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
-        if (postService.delete(id) != null) {
-            return "Post deleted";
-        } else {
-            return "Post not found";
-        }
+    @ResponseStatus(code = HttpStatus.OK, reason = "Post deleted")
+    public void delete(@PathVariable int id) {
+        postService.delete(id);
     }
 }

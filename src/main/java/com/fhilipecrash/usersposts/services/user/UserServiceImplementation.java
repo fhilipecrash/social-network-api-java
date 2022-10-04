@@ -2,7 +2,6 @@ package com.fhilipecrash.usersposts.services.user;
 
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.repositories.UserRepository;
-import com.fhilipecrash.usersposts.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
