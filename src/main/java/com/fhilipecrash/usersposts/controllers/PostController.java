@@ -22,7 +22,7 @@ public class PostController {
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Post getPost(@PathVariable int id) {
+    public Post getPost(@PathVariable("id") int id) {
         return postService.getPost(id);
     }
 
@@ -34,13 +34,13 @@ public class PostController {
 
     @PutMapping("/update/{id}")
     @ResponseStatus(code = HttpStatus.OK, reason = "Post updated")
-    public void update(@PathVariable int id, @RequestBody Post post) {
+    public void update(@PathVariable("id") int id, @RequestBody Post post) {
         postService.update(id, post);
     }
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(code = HttpStatus.OK, reason = "Post deleted")
-    public void delete(@PathVariable int id) {
+    public void delete(@PathVariable("id") int id) {
         postService.delete(id);
     }
 }
