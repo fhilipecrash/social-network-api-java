@@ -3,16 +3,17 @@ package com.fhilipecrash.usersposts.services.user;
 import com.fhilipecrash.usersposts.models.User;
 
 import java.util.List;
-import java.util.Map;
 
 public interface UserService {
-    public User getUser(int id);
+    User getUser(int id);
 
-    public List<User> getAllUsers();
+    User getUserByEmail(String email);
 
-    public User save(User user);
+    List<User> getAllUsers();
 
-    public User update(int id, User user);
+    User save(User user);
 
-    public User delete(int id);
+    User update(int id, User user);
+
+    User delete(int id);
 }

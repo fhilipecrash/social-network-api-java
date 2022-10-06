@@ -24,6 +24,12 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping(value = "/usersByEmail/{email}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public User getUsersByEmail(@PathVariable("email") String email) {
+        return userService.getUserByEmail(email);
+    }
+
     @GetMapping(value = "/{id}", params = "showPosts")
     @ResponseStatus(code = HttpStatus.OK)
     public Map<String, Object> getUser(@PathVariable("id") int id, @RequestParam("showPosts") boolean showPosts) {
