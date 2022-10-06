@@ -1,5 +1,6 @@
 package com.fhilipecrash.usersposts.controllers;
 
+import com.fhilipecrash.usersposts.interfaces.UserWithoutPosts;
 import com.fhilipecrash.usersposts.models.Post;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.services.user.UserService;
@@ -30,31 +31,10 @@ public class UserController {
         return userService.getUserByEmail(email);
     }
 
-    @GetMapping(value = "/{id}", params = "showPosts")
+    @GetMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Map<String, Object> getUser(@PathVariable("id") int id, @RequestParam("showPosts") boolean showPosts) {
-        User user = userService.getUser(id);
-        Map<String, Object> userMap = new LinkedHashMap<>();
-        userMap.put("id", user.getId());
-        userMap.put("name", user.getName());
-        userMap.put("email", user.getEmail());
-
-        if (showPosts) {
-            List<Post> posts = user.getPosts();
-            List<Map<String, Object>> postsMap = new ArrayList<>();
-            posts.forEach(post -> {
-                Map<String, Object> postMap = new LinkedHashMap<>();
-                postMap.put("id", post.getId());
-                postMap.put("title", post.getTitle());
-                postMap.put("content", post.getContent());
-
-                postsMap.add(postMap);
-            });
-            userMap.put("posts", postsMap);
-        }
-
-
-        return userMap;
+    public UserWithoutPosts getUser(@PathVariable("id") int id) {
+       return userService.getUserWithoutPosts(id);
     }
 
     @PostMapping("/create")

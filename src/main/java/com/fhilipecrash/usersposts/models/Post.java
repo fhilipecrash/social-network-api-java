@@ -41,8 +41,8 @@ public class Post {
         this.content = content;
     }
 
-    public int getUser() {
-        return user.getId();
+    public User getUser() {
+        return user;
     }
 
     public void setUser(User user) {
