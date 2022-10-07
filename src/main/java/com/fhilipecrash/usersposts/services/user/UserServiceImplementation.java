@@ -29,6 +29,11 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public List<UserWithoutPosts> getAllUsersWithoutPosts() {
+        return userRepository.findAllUsersWithoutPosts();
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }

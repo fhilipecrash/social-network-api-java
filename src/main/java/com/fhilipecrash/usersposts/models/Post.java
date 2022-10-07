@@ -49,4 +49,8 @@ public class Post {
         this.user = user;
     }
 
+    public int getUserId() {
+        return user.getId();
+    }
+
 }

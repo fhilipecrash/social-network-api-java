@@ -12,6 +12,8 @@ public interface UserService {
 
     UserWithoutPosts getUserWithoutPosts(int id);
 
+    List<UserWithoutPosts> getAllUsersWithoutPosts();
+
     List<User> getAllUsers();
 
     User save(User user);

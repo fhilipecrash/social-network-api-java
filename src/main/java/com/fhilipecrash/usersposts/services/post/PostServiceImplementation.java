@@ -1,5 +1,6 @@
 package com.fhilipecrash.usersposts.services.post;
 
+import com.fhilipecrash.usersposts.interfaces.PostsWithoutUserData;
 import com.fhilipecrash.usersposts.models.Post;
 import com.fhilipecrash.usersposts.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,13 @@ public class PostServiceImplementation implements PostService {
     }
 
     @Override
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public PostsWithoutUserData getPostWithoutUserData(int id) {
+        return postRepository.findPostWithoutData(id);
+    }
+
+    @Override
+    public List<PostsWithoutUserData> getAllPosts() {
+        return postRepository.findAllPosts();
     }
 
     @Override
