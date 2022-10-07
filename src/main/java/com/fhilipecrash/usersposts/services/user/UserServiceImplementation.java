@@ -1,6 +1,5 @@
 package com.fhilipecrash.usersposts.services.user;
 
-import com.fhilipecrash.usersposts.interfaces.UserWithoutPosts;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +20,6 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
-    }
-
-    @Override
-    public UserWithoutPosts getUserWithoutPosts(int id) {
-        return userRepository.findUserWithoutPosts(id);
-    }
-
-    @Override
-    public List<UserWithoutPosts> getAllUsersWithoutPosts() {
-        return userRepository.findAllUsersWithoutPosts();
     }
 
     @Override

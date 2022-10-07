@@ -41,16 +41,11 @@ public class Post {
         this.content = content;
     }
 
-    public User getUser() {
-        return user;
+    public int getUser() {
+        return user.getId();
     }
 
     public void setUser(User user) {
         this.user = user;
     }
-
-    public int getUserId() {
-        return user.getId();
-    }
-
 }

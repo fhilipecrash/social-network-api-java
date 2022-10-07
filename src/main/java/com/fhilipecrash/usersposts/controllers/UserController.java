@@ -1,6 +1,5 @@
 package com.fhilipecrash.usersposts.controllers;
 
-import com.fhilipecrash.usersposts.interfaces.UserWithoutPosts;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,8 @@ public class UserController {
 
     @GetMapping()
     @ResponseStatus(code = HttpStatus.OK)
-    public List<UserWithoutPosts> getAllUsers() {
-        return userService.getAllUsersWithoutPosts();
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @GetMapping(params = "email")
@@ -29,8 +28,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public UserWithoutPosts getUser(@PathVariable("id") int id) {
-       return userService.getUserWithoutPosts(id);
+    public User getUser(@PathVariable("id") int id) {
+       return userService.getUser(id);
     }
 
     @PostMapping("/create")

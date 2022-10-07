@@ -1,6 +1,5 @@
 package com.fhilipecrash.usersposts.services.post;
 
-import com.fhilipecrash.usersposts.interfaces.PostsWithoutUserData;
 import com.fhilipecrash.usersposts.models.Post;
 
 import java.util.List;
@@ -8,9 +7,7 @@ import java.util.List;
 public interface PostService {
     Post getPost(int id);
 
-    PostsWithoutUserData getPostWithoutUserData(int id);
-
-    List<PostsWithoutUserData> getAllPosts();
+    List<Post> getAllPosts();
 
     Post save(Post post);
 
