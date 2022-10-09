@@ -23,3 +23,28 @@ The frontend code can be found <a href="https://github.com/fhilipecrash/mini-soc
 
 - [x] Create accounts
 - [ ] User posts
+
+## Getting Started
+
+### Prerequisites
+- Docker
+- Docker Compose
+- Java 17
+- Maven
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/fhilipecrash/mini-social-media-backend
+   ```
+2. Run the project
+   ```sh
+    docker-compose up -d # Run the postgres container
+    mvn clean install # Build the project 
+    mvn spring-boot:run # Run the spring application
+    ```
+   
+## Usage
+
+Checkout the Swagger documentation at http://localhost:8080/api/swagger-ui/index.html
