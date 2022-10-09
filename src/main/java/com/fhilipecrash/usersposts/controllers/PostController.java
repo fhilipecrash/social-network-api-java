@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping(value = "/posts", produces = "application/json")
 public class PostController {
     @Autowired
     private PostService postService;
