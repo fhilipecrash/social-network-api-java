@@ -3,6 +3,7 @@ package com.fhilipecrash.usersposts.controllers;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.fhilipecrash.usersposts.models.AuthRequest;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-class AuthRequest {
-    public String email;
-    public String password;
-}
 
 @RestController
 @RequestMapping("/auth")
@@ -40,8 +36,13 @@ public class AuthController {
             Algorithm algorithm = Algorithm.HMAC256(user.password);
             String token = JWT.create().withIssuer("auth0").sign(algorithm);
 
+            Map<String, Object> filteredUser = new LinkedHashMap<>();
+            filteredUser.put("id", loginUser.getId());
+            filteredUser.put("name", loginUser.getName());
+            filteredUser.put("email", loginUser.getEmail());
+
             Map<String, Object> response = new LinkedHashMap<>();
-            response.put("user", loginUser);
+            response.put("user", filteredUser);
             response.put("token", token);
 
             return response;

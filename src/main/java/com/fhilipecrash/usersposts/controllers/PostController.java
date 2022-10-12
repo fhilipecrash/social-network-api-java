@@ -1,5 +1,6 @@
 package com.fhilipecrash.usersposts.controllers;
 
+import com.fhilipecrash.usersposts.models.IPost;
 import com.fhilipecrash.usersposts.models.Post;
 import com.fhilipecrash.usersposts.services.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,14 @@ public class PostController {
 
     @GetMapping()
     @ResponseStatus(code = HttpStatus.OK)
-    public List<Post> getAllPosts() {
-        return postService.getAllPosts();
+    public List<IPost> getAllPosts() {
+        return postService.getAllIPosts();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Post getPost(@PathVariable("id") int id) {
-        return postService.getPost(id);
+    public IPost getPost(@PathVariable("id") int id) {
+        return postService.getIPost(id);
     }
 
     @PostMapping("/create")
