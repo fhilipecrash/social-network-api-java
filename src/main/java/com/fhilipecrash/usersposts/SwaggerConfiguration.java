@@ -32,10 +32,10 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Mini Social Media API")
+            .title("Social Network API")
             .description("An example of a mini social media API")
-            .version("1.0.0")
-            .license("Apache License Version 2.0")
+            .version("0.0.1")
+            .license("Apache 2.0")
             .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
             .contact(new Contact("Fhilipe Coelho",
                 "https://github.com/fhilipecrash",

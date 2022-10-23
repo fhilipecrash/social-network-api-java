@@ -1,4 +1,4 @@
-<h1 align="center"> Mini Social Media Project </h1>
+<h1 align="center"> Social Network Project </h1>
 
 <p align="center">
 This is a mini social media project that I created to learn more about the Spring and React frameworks. It is a simple social media site that allows users to create accounts and make posts. It is a work in progress and I plan to add more features in the future.
@@ -41,8 +41,8 @@ The frontend code can be found <a href="https://github.com/fhilipecrash/mini-soc
 2. Run the project
    ```sh
     docker-compose up -d # Run the postgres container
-    mvn clean install # Build the project 
-    mvn spring-boot:run # Run the spring application
+    ./mvnw clean install # Build the project 
+    ./mvnw spring-boot:run # Run the spring application
     ```
    
 ## Usage
