@@ -33,19 +33,19 @@ public class UserController {
        return userService.getIUser(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED, reason = "User created")
     public void save(@RequestBody User user) {
         userService.save(user);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK, reason = "User updated")
     public void update(@PathVariable("id") int id, @RequestBody User user) {
         userService.update(id, user);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK, reason = "User deleted")
     public void delete(@PathVariable("id") int id) {
         userService.delete(id);

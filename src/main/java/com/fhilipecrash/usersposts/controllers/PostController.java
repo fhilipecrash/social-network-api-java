@@ -27,19 +27,19 @@ public class PostController {
         return postService.getIPost(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED, reason = "Post created")
     public void save(@RequestBody Post post) {
         postService.save(post);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK, reason = "Post updated")
     public void update(@PathVariable("id") int id, @RequestBody Post post) {
         postService.update(id, post);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK, reason = "Post deleted")
     public void delete(@PathVariable("id") int id) {
         postService.delete(id);
