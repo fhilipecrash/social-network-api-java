@@ -1,5 +1,6 @@
 package com.fhilipecrash.usersposts.controllers;
 
+import com.fhilipecrash.usersposts.models.IPost;
 import com.fhilipecrash.usersposts.models.IUser;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.services.user.UserService;
@@ -51,4 +52,9 @@ public class UserController {
         userService.delete(id);
     }
 
+    @GetMapping("/{id}/posts")
+    @ResponseStatus(code = HttpStatus.OK, reason = "User posts")
+    public List<IPost> getUserPosts(@PathVariable("id") int id) {
+        return userService.getUserPosts(id);
+    }
 }

@@ -14,12 +14,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/auth")
 public class AuthController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/login")
+    @PostMapping("/auth")
     @ResponseStatus(code = HttpStatus.OK)
     public Map<String, Object> login(@RequestBody AuthRequest user) {
         User loginUser = userService.getUserByEmail(user.email);

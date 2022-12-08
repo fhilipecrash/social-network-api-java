@@ -1,7 +1,9 @@
 package com.fhilipecrash.usersposts.services.user;
 
+import com.fhilipecrash.usersposts.models.IPost;
 import com.fhilipecrash.usersposts.models.IUser;
 import com.fhilipecrash.usersposts.models.User;
+import com.fhilipecrash.usersposts.repositories.PostRepository;
 import com.fhilipecrash.usersposts.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import java.util.List;
 public class UserServiceImplementation implements UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PostRepository postRepository;
 
     @Override
     public User getUser(int id) {
@@ -63,5 +67,10 @@ public class UserServiceImplementation implements UserService {
             return userToDelete;
         }
         return null;
+    }
+
+    @Override
+    public List<IPost> getUserPosts(int id) {
+        return postRepository.findPostsByUserId(id);
     }
 }
