@@ -6,5 +6,4 @@ public interface IUser {
     int getId();
     String getName();
     String getEmail();
-    List<IPost> getPosts();
 }
