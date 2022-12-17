@@ -2,6 +2,7 @@ package com.fhilipecrash.usersposts.services.user;
 
 import com.fhilipecrash.usersposts.models.IPost;
 import com.fhilipecrash.usersposts.models.IUser;
+import com.fhilipecrash.usersposts.models.IUserPosts;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.repositories.PostRepository;
 import com.fhilipecrash.usersposts.repositories.UserRepository;
@@ -72,5 +73,10 @@ public class UserServiceImplementation implements UserService {
     @Override
     public List<IPost> getUserPosts(int id) {
         return postRepository.findPostsByUserId(id);
+    }
+
+    @Override
+    public IUserPosts getIUserPosts(int id) {
+        return userRepository.findUserPostsById(id);
     }
 }

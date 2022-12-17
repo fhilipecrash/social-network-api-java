@@ -1,6 +1,5 @@
 package com.fhilipecrash.usersposts.controllers;
 
-import com.fhilipecrash.usersposts.models.IPost;
 import com.fhilipecrash.usersposts.models.IUser;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.services.user.UserService;
@@ -9,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/users", produces = "application/json")
@@ -19,14 +18,12 @@ public class UserController {
 
     @GetMapping()
     @ResponseStatus(code = HttpStatus.OK)
-    public List<IUser> getAllUsers() {
-        return userService.getAllIUsers();
-    }
-
-    @GetMapping(params = "email")
-    @ResponseStatus(code = HttpStatus.OK)
-    public User getUsersByEmail(@RequestParam("email") String email) {
-        return userService.getUserByEmail(email);
+    public ResponseEntity<?> getUsers(@RequestParam(value = "email", required = false) Optional<String> email) {
+        if (email.isEmpty()) {
+            return ResponseEntity.ok(userService.getAllIUsers());
+        } else {
+            return ResponseEntity.ok(userService.getUserByEmail(email.get()));
+        }
     }
 
     @GetMapping("/{id}")
@@ -53,15 +50,15 @@ public class UserController {
         userService.delete(id);
     }
 
-    @GetMapping(value = "/{id}/posts", params = "with_user_info")
+    @GetMapping(value = "/{id}/posts")
     public ResponseEntity<?> getUserPosts(
         @RequestParam(value = "with_user_info", required = false) boolean withUserInfo,
         @PathVariable("id") int id
     ) {
         if (withUserInfo) {
-            return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
+            return ResponseEntity.ok(userService.getIUserPosts(id));
         } else {
-            return new ResponseEntity<>(userService.getUserPosts(id), HttpStatus.OK);
+            return ResponseEntity.ok(userService.getUserPosts(id));
         }
     }
 }

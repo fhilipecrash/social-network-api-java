@@ -1,6 +1,7 @@
 package com.fhilipecrash.usersposts.repositories;
 
 import com.fhilipecrash.usersposts.models.IUser;
+import com.fhilipecrash.usersposts.models.IUserPosts;
 import com.fhilipecrash.usersposts.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +11,9 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
+    @Query("SELECT u FROM User u WHERE u.id = ?1")
+    IUserPosts findUserPostsById(int id);
+
     @Query("select u from User u where u.email = ?1")
     User findByEmail(String email);
 
