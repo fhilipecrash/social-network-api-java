@@ -6,6 +6,7 @@ import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,9 +53,15 @@ public class UserController {
         userService.delete(id);
     }
 
-    @GetMapping("/{id}/posts")
-    @ResponseStatus(code = HttpStatus.OK, reason = "User posts")
-    public List<IPost> getUserPosts(@PathVariable("id") int id) {
-        return userService.getUserPosts(id);
+    @GetMapping(value = "/{id}/posts", params = "with_user_info")
+    public ResponseEntity<?> getUserPosts(
+        @RequestParam(value = "with_user_info", required = false) boolean withUserInfo,
+        @PathVariable("id") int id
+    ) {
+        if (withUserInfo) {
+            return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(userService.getUserPosts(id), HttpStatus.OK);
+        }
     }
 }
