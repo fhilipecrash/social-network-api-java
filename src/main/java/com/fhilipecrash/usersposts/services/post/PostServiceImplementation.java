@@ -3,15 +3,18 @@ package com.fhilipecrash.usersposts.services.post;
 import com.fhilipecrash.usersposts.models.IPost;
 import com.fhilipecrash.usersposts.models.Post;
 import com.fhilipecrash.usersposts.repositories.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class PostServiceImplementation implements PostService {
-    @Autowired
+
     private PostRepository postRepository;
+
+    public PostServiceImplementation(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     @Override
     public Post getPost(int id) {

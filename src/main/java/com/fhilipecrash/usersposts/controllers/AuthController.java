@@ -6,7 +6,6 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.fhilipecrash.usersposts.models.AuthRequest;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.services.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +14,11 @@ import java.util.Map;
 
 @RestController
 public class AuthController {
-    @Autowired
     private UserService userService;
+
+    public AuthController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/auth")
     @ResponseStatus(code = HttpStatus.OK)

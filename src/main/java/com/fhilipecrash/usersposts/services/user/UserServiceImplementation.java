@@ -6,17 +6,20 @@ import com.fhilipecrash.usersposts.models.IUserPosts;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.repositories.PostRepository;
 import com.fhilipecrash.usersposts.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserServiceImplementation implements UserService {
-    @Autowired
+
     private UserRepository userRepository;
-    @Autowired
     private PostRepository postRepository;
+
+    public UserServiceImplementation(UserRepository userRepository, PostRepository postRepository) {
+        this.userRepository = userRepository;
+        this.postRepository = postRepository;
+    }
 
     @Override
     public User getUser(int id) {

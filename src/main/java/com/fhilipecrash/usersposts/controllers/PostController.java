@@ -3,7 +3,6 @@ package com.fhilipecrash.usersposts.controllers;
 import com.fhilipecrash.usersposts.models.IPost;
 import com.fhilipecrash.usersposts.models.Post;
 import com.fhilipecrash.usersposts.services.post.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/posts", produces = "application/json")
 public class PostController {
-    @Autowired
     private PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
 
     @GetMapping()
     @ResponseStatus(code = HttpStatus.OK)

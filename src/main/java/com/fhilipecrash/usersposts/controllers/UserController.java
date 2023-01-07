@@ -3,7 +3,6 @@ package com.fhilipecrash.usersposts.controllers;
 import com.fhilipecrash.usersposts.models.IUser;
 import com.fhilipecrash.usersposts.models.User;
 import com.fhilipecrash.usersposts.services.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +12,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/users", produces = "application/json")
 public class UserController {
-    @Autowired
     private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping()
     @ResponseStatus(code = HttpStatus.OK)
@@ -29,7 +31,7 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public IUser getUser(@PathVariable("id") int id) {
-       return userService.getIUser(id);
+        return userService.getIUser(id);
     }
 
     @PostMapping("")
@@ -52,9 +54,8 @@ public class UserController {
 
     @GetMapping(value = "/{id}/posts")
     public ResponseEntity<?> getUserPosts(
-        @RequestParam(value = "with_user_info", required = false) boolean withUserInfo,
-        @PathVariable("id") int id
-    ) {
+            @RequestParam(value = "with_user_info", required = false) boolean withUserInfo,
+            @PathVariable("id") int id) {
         if (withUserInfo) {
             return ResponseEntity.ok(userService.getIUserPosts(id));
         } else {
